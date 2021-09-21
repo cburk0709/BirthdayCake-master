@@ -13,9 +13,10 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Happy Birthday!"
+            android:textAlignment="center"
             android:textColor="#FF5722"
             android:textSize="34sp" />
     </LinearLayout>
@@ -39,24 +40,83 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="HOORAY!!" />
+        <LinearLayout
+            android:id="@+id/seekBarColumn"
+            android:layout_width="228dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="vertical">
 
-        <Switch
-            android:id="@+id/frosting"
-            android:layout_width="108dp"
-            android:layout_height="wrap_content"
-            android:minHeight="48dp"
-            android:text="Frosting" />
+            <TextView
+                android:id="@+id/candleBarLabel"
+                android:layout_width="match_parent"
+                android:layout_height="31dp"
+                android:layout_marginStart="25dip"
+                android:text="How Many Candles?" />
 
-        <Button
-            android:id="@+id/button2"
+            <SeekBar
+                android:id="@+id/candleBar"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:baselineAligned="false"
+                android:max="5"
+                android:paddingStart="25dip"
+                android:paddingEnd="5dip"
+                android:progress="2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/switchColumn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="yay..." />
+            android:layout_height="match_parent"
+            android:layout_weight=".5"
+            android:orientation="vertical">
+
+            <Switch
+                android:id="@+id/frosting"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="Frosting"
+                android:layout_height="wrap_content"/>
+
+            <Switch
+                android:id="@+id/candleSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="Candles" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/buttonColumn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".5"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/blowoutButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_horizontal"
+                android:layout_marginEnd="25dip"
+                android:text="Blow Out" />
+
+            <Button
+                android:id="@+id/goodbyeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_horizontal"
+                android:layout_marginEnd="25dip"
+                android:includeFontPadding="true"
+                android:onClick="goodbye"
+                android:text="GoodBye" />
+        </LinearLayout>
 
     </LinearLayout>
 </LinearLayout>
