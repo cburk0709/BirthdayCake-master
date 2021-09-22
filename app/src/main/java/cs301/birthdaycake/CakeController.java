@@ -7,11 +7,10 @@ import android.widget.CompoundButton;
 import android.widget.SeekBar;
 
 
-public class CakeController implements View.OnClickListener, CompoundButton.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener {
+public class CakeController implements View.OnClickListener, CompoundButton.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener, View.OnTouchListener {
 
     private CakeView myCakeView;
     private CakeModel myCakeModel;
-    Square square;
 
     public CakeController(CakeView tempView){
         myCakeView = tempView;
@@ -43,6 +42,7 @@ public class CakeController implements View.OnClickListener, CompoundButton.OnCh
         myCakeModel.candleCount = i;
         //redraw
         myCakeView.invalidate();
+
     }
 
     @Override
@@ -55,4 +55,12 @@ public class CakeController implements View.OnClickListener, CompoundButton.OnCh
 
     }
 
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        myCakeModel.balloonX = motionEvent.getX();
+        myCakeModel.balloonY = motionEvent.getY();
+        myCakeModel.drawBalloon = true;
+        myCakeView.invalidate();
+        return false;
+    }
 }

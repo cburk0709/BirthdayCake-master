@@ -5,14 +5,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.SurfaceView;
-import android.view.View;
 
-public class CakeView extends SurfaceView implements View.OnTouchListener {
+public class CakeView extends SurfaceView {
 
     private CakeModel myCakeModel;
-    private Square sq;
+
     /* These are the paints we'll use to draw the birthday cake below */
     Paint cakePaint = new Paint();
     Paint frostingPaint = new Paint();
@@ -20,7 +18,7 @@ public class CakeView extends SurfaceView implements View.OnTouchListener {
     Paint outerFlamePaint = new Paint();
     Paint innerFlamePaint = new Paint();
     Paint wickPaint = new Paint();
-
+    Paint balloonPaint = new Paint();
 
     /* These constants define the dimensions of the cake.  While defining constants for things
         like this is good practice, we could be calculating these better by detecting
@@ -62,6 +60,7 @@ public class CakeView extends SurfaceView implements View.OnTouchListener {
         innerFlamePaint.setStyle(Paint.Style.FILL);
         wickPaint.setColor(Color.BLACK);
         wickPaint.setStyle(Paint.Style.FILL);
+        balloonPaint.setARGB(255,0,0,255);
 
         setBackgroundColor(Color.WHITE);  //better than black default
 
@@ -139,20 +138,11 @@ public class CakeView extends SurfaceView implements View.OnTouchListener {
             }
           //  drawCandle(canvas, cakeLeft + 2 * cakeWidth / 3 - candleWidth / 2, cakeTop);
         }
-
-
+        if(myCakeModel.drawBalloon == true){
+            canvas.drawOval(myCakeModel.balloonX - 100, myCakeModel.balloonY - 200, myCakeModel.balloonX +100, myCakeModel.balloonY + 200, balloonPaint);
+            canvas.drawLine(myCakeModel.balloonX, myCakeModel.balloonY +200, myCakeModel.balloonX, myCakeModel.balloonX + 250, wickPaint);
+        }
     }//onDraw
 
-    @Override
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-        if(motionEvent.getActionMasked() == MotionEvent.ACTION_DOWN) {
-            float x = motionEvent.getX();
-            float y = motionEvent.getY();
-            sq = new Square(x,y);
-            invalidate();
-            return true;
-        }
-        return false;
-    }
 }//class CakeView
 
