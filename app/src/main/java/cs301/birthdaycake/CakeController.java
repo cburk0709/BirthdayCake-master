@@ -11,6 +11,7 @@ public class CakeController implements View.OnClickListener, CompoundButton.OnCh
 
     private CakeView myCakeView;
     private CakeModel myCakeModel;
+    private Square square;
 
     public CakeController(CakeView tempView){
         myCakeView = tempView;
@@ -57,10 +58,15 @@ public class CakeController implements View.OnClickListener, CompoundButton.OnCh
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
-        myCakeModel.balloonX = motionEvent.getX();
-        myCakeModel.balloonY = motionEvent.getY();
-        myCakeModel.drawBalloon = true;
+        myCakeModel.squareX = motionEvent.getX();
+        myCakeModel.squareY = motionEvent.getY();
+        myCakeModel.drawSquare = true;
         myCakeView.invalidate();
+
         return false;
+    }
+
+    public Square getSquare() {
+        return square;
     }
 }

@@ -10,7 +10,6 @@ import android.view.SurfaceView;
 public class CakeView extends SurfaceView {
 
     private CakeModel myCakeModel;
-
     /* These are the paints we'll use to draw the birthday cake below */
     Paint cakePaint = new Paint();
     Paint frostingPaint = new Paint();
@@ -19,6 +18,7 @@ public class CakeView extends SurfaceView {
     Paint innerFlamePaint = new Paint();
     Paint wickPaint = new Paint();
     Paint balloonPaint = new Paint();
+    Paint redPaint = new Paint();
 
     /* These constants define the dimensions of the cake.  While defining constants for things
         like this is good practice, we could be calculating these better by detecting
@@ -48,6 +48,7 @@ public class CakeView extends SurfaceView {
         setWillNotDraw(false);
 
         //Setup our palette
+        redPaint.setColor(Color.RED);
         cakePaint.setColor(0xFF4469FC);  //light blue
         cakePaint.setStyle(Paint.Style.FILL);
         frostingPaint.setColor(0xFFFFFACD);  //pale yellow
@@ -138,11 +139,13 @@ public class CakeView extends SurfaceView {
             }
           //  drawCandle(canvas, cakeLeft + 2 * cakeWidth / 3 - candleWidth / 2, cakeTop);
         }
-        if(myCakeModel.drawBalloon == true){
-            canvas.drawOval(myCakeModel.balloonX - 100, myCakeModel.balloonY - 200, myCakeModel.balloonX +100, myCakeModel.balloonY + 200, balloonPaint);
-            canvas.drawLine(myCakeModel.balloonX, myCakeModel.balloonY +200, myCakeModel.balloonX, myCakeModel.balloonX + 250, wickPaint);
+        if(myCakeModel.drawSquare) {
+            canvas.drawRect(myCakeModel.squareX - 100, myCakeModel.squareY - 100, myCakeModel.squareX, myCakeModel.squareY, redPaint);
+            canvas.drawRect(myCakeModel.squareX - 100, myCakeModel.squareY, myCakeModel.squareX, myCakeModel.squareY + 100, candlePaint);
+            canvas.drawRect(myCakeModel.squareX, myCakeModel.squareY - 100, myCakeModel.squareX + 100, myCakeModel.squareY, candlePaint);
+            canvas.drawRect(myCakeModel.squareX, myCakeModel.squareY, myCakeModel.squareX + 100, myCakeModel.squareY + 100, redPaint);
         }
-    }//onDraw
+        }//onDraw
 
 }//class CakeView
 
