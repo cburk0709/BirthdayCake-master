@@ -7,5 +7,8 @@ public class CakeModel {
     public boolean cakeHasCandles = true;
     public float x = 0;
     public float y = 0;
+    public float balloonY = 0;
+    public float balloonX = 0;
+    public boolean drawBalloon = false;
 
 }
