@@ -6,11 +6,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
+import android.view.View;
 
 public class CakeView extends SurfaceView {
 
     private CakeModel myCakeModel;
+
     /* These are the paints we'll use to draw the birthday cake below */
+    Paint textPaint = new Paint();
     Paint cakePaint = new Paint();
     Paint frostingPaint = new Paint();
     Paint candlePaint = new Paint();
@@ -62,6 +65,8 @@ public class CakeView extends SurfaceView {
         wickPaint.setColor(Color.BLACK);
         wickPaint.setStyle(Paint.Style.FILL);
         balloonPaint.setARGB(255,0,0,255);
+        textPaint.setColor(Color.RED);
+        textPaint.setTextSize(50);
 
         setBackgroundColor(Color.WHITE);  //better than black default
 
@@ -134,10 +139,15 @@ public class CakeView extends SurfaceView {
 
         //2 equidistant candles
         if(myCakeModel.cakeHasCandles) {
-            for (int i = 1; i <= myCakeModel.candleCount; i++){
+            for (int i = 1; i <= myCakeModel.candleCount; i++) {
                 drawCandle(canvas, cakeLeft + (i * cakeWidth) / (myCakeModel.candleCount + 1) - candleWidth / myCakeModel.candleCount, cakeTop);
             }
-          //  drawCandle(canvas, cakeLeft + 2 * cakeWidth / 3 - candleWidth / 2, cakeTop);
+            //  drawCandle(canvas, cakeLeft + 2 * cakeWidth / 3 - candleWidth / 2, cakeTop);
+        }
+        canvas.drawText("Touch at: (" + myCakeModel.x + "," + myCakeModel.y + ")", 1800, 1100, textPaint);
+        if(myCakeModel.drawBalloon == true) {
+            canvas.drawOval(myCakeModel.balloonX - 100, myCakeModel.balloonY - 200, myCakeModel.balloonX + 100, myCakeModel.balloonY + 200, balloonPaint);
+            canvas.drawLine(myCakeModel.balloonX, myCakeModel.balloonY + 200, myCakeModel.balloonX, myCakeModel.balloonX + 250, wickPaint);
         }
         if(myCakeModel.drawSquare) {
             canvas.drawRect(myCakeModel.squareX - 100, myCakeModel.squareY - 100, myCakeModel.squareX, myCakeModel.squareY, redPaint);

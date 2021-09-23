@@ -8,5 +8,10 @@ public class CakeModel {
     public float squareX = 0;
     public float squareY = 0;
     public boolean drawSquare = false;
+    public float x = 0;
+    public float y = 0;
+    public float balloonY = 0;
+    public float balloonX = 0;
+    public boolean drawBalloon = false;
 
 }
