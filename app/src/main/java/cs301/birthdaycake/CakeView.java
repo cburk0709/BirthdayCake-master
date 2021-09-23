@@ -5,13 +5,16 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.SurfaceView;
+import android.view.View;
 
 public class CakeView extends SurfaceView {
 
     private CakeModel myCakeModel;
 
     /* These are the paints we'll use to draw the birthday cake below */
+    Paint textPaint = new Paint();
     Paint cakePaint = new Paint();
     Paint frostingPaint = new Paint();
     Paint candlePaint = new Paint();
@@ -59,6 +62,8 @@ public class CakeView extends SurfaceView {
         innerFlamePaint.setStyle(Paint.Style.FILL);
         wickPaint.setColor(Color.BLACK);
         wickPaint.setStyle(Paint.Style.FILL);
+        textPaint.setColor(Color.RED);
+        textPaint.setTextSize(50);
 
         setBackgroundColor(Color.WHITE);  //better than black default
 
@@ -131,11 +136,12 @@ public class CakeView extends SurfaceView {
 
         //2 equidistant candles
         if(myCakeModel.cakeHasCandles) {
-            for (int i = 1; i <= myCakeModel.candleCount; i++){
+            for (int i = 1; i <= myCakeModel.candleCount; i++) {
                 drawCandle(canvas, cakeLeft + (i * cakeWidth) / (myCakeModel.candleCount + 1) - candleWidth / myCakeModel.candleCount, cakeTop);
             }
-          //  drawCandle(canvas, cakeLeft + 2 * cakeWidth / 3 - candleWidth / 2, cakeTop);
+            //  drawCandle(canvas, cakeLeft + 2 * cakeWidth / 3 - candleWidth / 2, cakeTop);
         }
+        canvas.drawText("Touch at: (" + myCakeModel.x + "," + myCakeModel.y + ")", 1800, 1100, textPaint);
     }//onDraw
 
 }//class CakeView
